@@ -1,0 +1,27 @@
+class Solution {
+    public String convert(String s, int numRows) {
+        if (numRows == 1 || s.length() <= numRows) {
+            return s;
+        }
+
+        String result = "";
+        for (int r = 0; r < numRows; r++) {
+            int i = r;
+            while (i < s.length()) {
+                result += s.charAt(i);
+                int step1 = (numRows - r - 1) * 2;
+                int step2 = r * 2;
+                if (step1 == 0) i += step2;
+                else if (step2 == 0) i += step1;
+                else {
+                    i += step1;
+                    if (i < s.length()) {
+                        result += s.charAt(i);
+                        i += step2;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+}
